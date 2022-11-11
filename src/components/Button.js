@@ -1,34 +1,42 @@
 import styled, { css } from 'styled-components'
 
+const largeStyles = ({ large }) => {
+  if (large) {
+    return css`
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1.5em;
+    `
+  } else {
+    return css`
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 1em;
+    `
+  }
+}
+
 export const Button = styled.button`
   color: white;
-  background: ${p => (p.primary ? '#f8049c' : 'black')};
+  background: ${p =>
+    p.secondary ? p.theme.secondaryColor : p.theme.primaryColor};
   font-weight: bold;
   cursor: pointer;
-  ${p =>
-    p.large
-      ? css`
-          padding: 10px;
-          border-radius: 5px;
-          font-size: 1.5em;
-        `
-      : css`
-          padding: 8px;
-          border-radius: 4px;
-          font-size: 1em;
-        `}
+  ${largeStyles};
   box-shadow: none;
   border: none;
   width: 100%;
   display: block;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 
   &:hover {
-    background: ${p => (p.primary ? '#ff5ab3' : '#333')};
+    opacity: 0.7;
   }
 
   &:disabled {
     background: #eee;
     color: #666;
+    opacity: 1;
+    cursor: default;
   }
 `
